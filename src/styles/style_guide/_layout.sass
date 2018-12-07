@@ -1,0 +1,15 @@
+body
+    display: flex
+    flex-direction: column
+
+.main-content_grid
+    flex-grow: 1
+    display: grid
+    grid-template-columns: 250px 1fr
+    padding: $spacing-md
+    +mobile
+        padding: 0
+        grid-template-columns: 1fr
+        grid-template-rows: 1fr 50px
+        main
+            max-width: 100vw

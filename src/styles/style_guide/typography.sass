@@ -1,0 +1,11 @@
+.font-example
+    margin: $spacing-sm 0
+
+.font-example_alphabet
+    &::before
+        display: block
+        content: attr(data-content)
+        text-transform: uppercase
+    &::after
+        display: block
+        content: attr(data-content)

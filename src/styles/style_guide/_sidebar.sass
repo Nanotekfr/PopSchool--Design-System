@@ -1,0 +1,13 @@
+.sidebar
+    position: sticky
+    top: 0
+    +mobile
+        display: flex
+
+.sidebar-link
+    padding: $spacing-xs $spacing-sm
+    display: block
+    width: 100%
+    &:hover
+        background-color: var(--color-primary)
+        color: findColorInvert($color-primary)

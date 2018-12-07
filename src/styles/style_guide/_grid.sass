@@ -1,0 +1,16 @@
+.grid_example
+    grid-gap: 1em
+    min-height: 15em
+    width: 100%
+
+.grid-item_example
+    padding: $spacing-xs
+
+.grid-title_example::after
+    content: attr(data-class)
+    display: inline-block
+    background-color: var(--color-primary)
+    color: findColorInvert($color-primary)
+    padding: $spacing-xs
+    border-radius: $spacing-xxs
+    margin-left: $spacing-sm

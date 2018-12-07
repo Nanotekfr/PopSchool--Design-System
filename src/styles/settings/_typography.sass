@@ -1,0 +1,47 @@
+// N'oubliez pas de remplacer ces valeurs pas vos propres fonts !
+$font-primary: 'Roboto', Helvetica, arial, sans-serif
+$font-title: 'Poiret One', Helvetica, arial, cursive
+$font-serif: 'Lora', Garamond, Georgia, Times New Roman, serif
+// Les fonts monospace possèdent des caractères qui font tous la même largeur. C'est utilisé pour représenter des blocs de code, par exemple
+$font-monospace: "Roboto Mono", monospace
+
+/*
+ * Cette variable va nous servir à calculer programmatiquement toutes nos tailles de $text-base-size
+ * le but ici est d'avoir un ratio de tailles harmonieux pour nos differents éléments
+ */
+$text-scale-ratio: 1.2
+$text-scale-ratio-mobile: 1.08
+
+$text-base-size: 1.05em
+$base-line-height: 1.1
+
+$heading-line-height: calc( 1.2 * #{$base-line-height})
+$textcontent-line-height: calc( 1.5 * #{$base-line-height})
+
+/*
+ * petit trick ici : affecte la variable $text-scale-ratio à une CSS Custom Proprty.
+ * Leur principal avantage par rapport aux variables SASS est qu'elles ne sont pas compilées par sans-serif
+ * C'est-à-dire que pendant que notre application tourne, on peut en changer sa valeur dynamiquement
+ * et cela se reportera sur tout le reste de notre CSS.
+ * Cela va ici nous être utile pour avoir différentes échelles en fonction du device qui consulte notre page.
+\:root
+    --font-primary: #{$font-primary}
+    --font-title: #{$font-title}
+    --font-serif: #{$font-serif}
+    --font-monospace: #{$font-monospace}
+    --text-scale-ratio: #{$text-scale-ratio}
+    --text-scale-ratio-mobile: #{$text-scale-ratio}
+
+/*
+ * Aie, ma tête !
+ * Ici , on doit enchainer des calculs compliqués pour calculer nos échelles
+ * au lieu d'à chaque fois réutiliser la valeur précédente (calculer $text-xl à partir de $text-lg, etc)
+ * car à l'heure actuelle, CSS n'aime pas trop les calc à l'intnérieur de calc en utilisant des Custom Properties
+ */
+$text-xs: calc(#{$text-base-size} / (#{$text-scale-ratio} * #{$text-scale-ratio}) )
+$text-sm: calc(#{$text-base-size} / #{$text-scale-ratio})
+$text-md: calc(#{$text-base-size} * #{$text-scale-ratio})
+$text-lg: calc(#{$text-base-size} * #{$text-scale-ratio} * #{$text-scale-ratio})
+$text-xl: calc(#{$text-base-size} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio})
+$text-xxl: calc(#{$text-base-size} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio})
+$text-xxxl: calc(#{$text-base-size} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio} * #{$text-scale-ratio})

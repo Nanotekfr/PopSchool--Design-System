@@ -1,0 +1,43 @@
+.section
+    background-color: var(--color-white)
+    box-shadow: 0 $spacing-xs $spacing-xs 0 transparentize($color-black, 0.8)
+    margin-bottom: $spacing-md
+    padding: $spacing-md
+
+.section_title
+    font-family: $font-title
+    font-size: $text-lg
+    border-bottom: solid 1px var(--color-light)
+    padding-bottom: $spacing-xs
+    margin-bottom: $spacing-sm
+
+.section-subtitle
+    margin: $spacing-sm 0
+
+.code_block
+    font-family: $font-monospace
+
+.show-code
+    background-color: var(--color-primary)
+    color: findColorInvert($color-primary)
+    padding: $spacing-xs $spacing-sm
+    border-radius: $spacing-xs
+    border: none
+    cursor: pointer
+    margin-bottom: $spacing-sm
+    &:hover, &:focus
+        filter: brightness(85%) contrast(150%)
+        outline: none
+    +mobile
+        // highlightjs fout le brun en responsive et j'ai la flemme de regarder pour réparer ça
+        display: none
+
+.code-block
+    display: block
+    max-width: calc(100vw - 250px - 3 * #{$spacing-md})
+    margin: 0 auto
+
+.nohighlight
+    font-family: $font-monospace
+    color: $color-gray-3
+    background-color: var(--color-light)

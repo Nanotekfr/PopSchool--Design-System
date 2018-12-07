@@ -1,0 +1,16 @@
+.colors_list
+    display: flex
+    flex-flow: row wrap
+
+.colors_block
+    --width: 25%
+    display: inline-block
+    border: solid 1px var(--color-black)
+    padding: $spacing-sm
+    margin: $spacing-xs
+    display: flex
+    justify-content: center
+    align-items: center
+    width: calc(var(--width) - 3 * #{$spacing-xs})
+    +mobile
+        --width: 50%

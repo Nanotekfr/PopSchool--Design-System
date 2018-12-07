@@ -1,0 +1,35 @@
+/*
+ * fonction permettant de calculer les puissances d'un nombre
+ */
+@function pow($number, $exponent)
+    $value: 1
+    @if $exponent > 0
+        @for $i from 1 through $exponent
+            $value: $value * $number
+    @return $value
+
+/*
+ * fonction permettant de calculer la luminance d'une couleur. On va utiliser cette fonction plus bas.
+ */
+@function colorLuminance($color)
+    $color-rgb: ('red': red($color),'green': green($color),'blue': blue($color))
+    @each $name, $value in $color-rgb
+        $adjusted: 0
+        $value: $value / 255
+        @if $value < 0.03928
+            $value: $value / 12.92
+        @else
+            $value: ($value + .055) / 1.055
+            $value: pow($value, 2)
+            $color-rgb: map-merge($color-rgb, ($name: $value))
+    @return (map-get($color-rgb, 'red') * .2126) + (map-get($color-rgb, 'green') * .7152) + (map-get($color-rgb, 'blue') * .0722)
+
+/*
+ * Cette fonction permet de retourner soit blanc, soit noir, en fonction de la luminance d'une couleur.
+ * C'est utilisé pour déterminer automatiquement la couleur approprié pour un texte en fonction de la couleur du fond.
+ */
+@function findColorInvert($color)
+    @if (colorLuminance($color) > 0.55)
+        @return #222
+    @else
+        @return white

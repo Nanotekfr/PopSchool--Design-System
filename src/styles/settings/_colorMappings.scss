@@ -1,0 +1,66 @@
+/*
+ * liste des couleurs du Material Design de Google, toutes normalisées à 50% de luminosité
+ */
+$baseColors: (
+    red: hsl(4, 79%, 50%),
+    pink: hsl(340, 71%, 50%),
+    purple: hsl(291, 60%, 50%),
+    deeppurple: hsl(262, 41%, 50%),
+    indigo: hsl(231, 47%, 50%),
+    blue: hsl(209, 79%, 50%),
+    lightblue: hsl(199, 85%, 50%),
+    cyan: hsl(187, 80%, 50%),
+    teal: hsl(174, 73%, 50%),
+    green: hsl(122, 48%, 50%),
+    lightgreen: hsl(88, 40%, 50%),
+    lime: hsl(66, 60%, 50%),
+    yellow: hsl(54, 89%, 50%),
+    amber: hsl(45, 89%, 50%),
+    orange: hsl(36, 89%, 50%),
+    deeporange: hsl(18, 89%, 50%),
+    brown: hsl(16, 21%, 50%),
+    grey: hsl(0, 0%, 50%),
+    coldgrey: hsl(200, 13%, 50%),
+    warmgrey: hsl(20, 6%, 50%),
+    black: hsl(0, 0, 0%),
+    white: hsl(0, 0, 100%)
+);
+
+/*
+ * Cette fonction va nous permettre de générer une palette de couleurs à partir des couleurs de bases.
+ * 10 teintes plus claires et 10 teintes plus foncées seront générées.
+ * La nomenclature de ces classes est (nom-de-couleur)-(d-ou-l)-(1-10)
+ */
+@function colorMap($basecolors) {
+    $colors: ();
+    @each $key, $value in $basecolors {
+        $swatch: ();
+        $swatch: map-merge(
+            $swatch,
+            (
+                $key: $value
+            )
+        );
+        @for $i from 1 through 10 {
+            $swatch: map-merge(
+                $swatch,
+                (
+                    #{$key}-l-#{$i}: lighten($value, 5% * $i),
+                    #{$key}-d-#{$i}: darken($value, 5% * $i)
+                )
+            );
+        }
+        $colors: map-merge($colors, $swatch);
+    }
+    @return $colors;
+}
+
+$custom-colors: colorMap($baseColors);
+
+/*
+ * Cette fonction permet d'accéder facilement à une de nos couleurs générées plus haut.
+ * exemple: color($red-d-3), color($blue-l-5)
+ */
+@function color($color) {
+    @return map-get($custom-colors, $color);
+}

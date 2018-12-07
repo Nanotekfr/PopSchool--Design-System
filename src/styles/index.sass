@@ -1,0 +1,39 @@
+/*
+ * Le coeur du design system.
+ * contient toutes les variables de couleurs, polices, layout, mixins etc
+ * C'est ici que se trouve toute la configurationd es styles de votres appli, y changer des valeurs aura des repercussions sur toute la page
+ */
+@import "settings/all"
+/*
+ * Contient tous les mixins
+ */
+@import "mixins/all"
+/*
+ * utilitaires : reset des styles par défaut du navigateur, classes utilitaires.
+ * Une classe utilitaire possède très peu de contenu : elle fait une chose, et elle le fait bien. Par exemple centrer  un texte, ou lui appliquer une couleur.
+ * L'intérêt de ces classes est de les combiner entre elles afin de facilement styliser certaines parties de votre interface, sans avoir à créer une classe pour absolument tout (rappelez vous : utiliser des balises html comme selecteur css, c'est mal.)
+ */
+@import "utils/all"
+/*
+ *contient le code n'appartenant pas au design system, utilisé par la page de démonstration
+ */
+@import "style_guide/all"
+
+
+body
+    font-size: $text-base-size
+    font-family: $font-primary
+    line-height: $base-line-height
+    color: var(--color-text)
+    background-color: $color-white
+    overflow-x: hidden
+    min-height: 100vh
+    width: 100vw
+    background: radial-gradient(circle at center, $color-white 50%, $color-gray-5)
+
+a
+    color: $color-link
+    &:hover
+        color: $color-link-hovered
+    &:visited
+        color: $color-link-visited
